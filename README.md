@@ -1,2 +1,2 @@
 # Mind Bridge
-![](https://github.com/elsieyli/MLH-all-in/kiss.gif)
+![]([https://github.com/elsieyli/MindBridge/blob/main/kiss.gif]))
