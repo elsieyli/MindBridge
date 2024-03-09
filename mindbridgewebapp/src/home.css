@@ -1,0 +1,44 @@
+.home {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .main-content {
+    display: flex;
+  }
+  
+  .buttons-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Adjust as per design */
+    grid-gap: 16px; /* Adjust the gap as necessary */
+    padding: 16px; /* Adjust the padding as necessary */
+  }
+  
+  /* Assuming Button.js renders a div with 'button' class */
+  .button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFA500; /* Assuming a shade of orange for the buttons */
+    padding: 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+  .button:hover {
+    transform: translateY(-5px);
+  }
+  
+  .button img {
+    max-width: 50%; /* adjust based on your design */
+    height: auto;
+  }
+  
+  .button-text {
+    margin-top: 8px;
+    color: #FFFFFF; /* Assuming white text */
+    font-size: 1rem; /* Adjust as per design */
+    text-align: center;
+  }
