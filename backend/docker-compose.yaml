@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "80:80"
+        #environment:
+      #  - DOMAIN=yourdomain.com
+    networks:
+      - webnet
+
+networks:
+  webnet:
+
