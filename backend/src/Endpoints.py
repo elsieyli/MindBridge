@@ -7,6 +7,8 @@ from pydantic import BaseModel, HttpUrl
 app = FastAPI()
 
 # DEPENDENCY OF MONGODB
+import MongoDB
+
 
 # Save Configrution of Buttons:
 class ConfigurationModel(BaseModel):
@@ -31,7 +33,7 @@ async def GetConfig(name: str) -> ConfigurationModel:
     try:
         pass
     except Exception:
-        raise HTTPException(status_code=404, detail="Get Configuration Failed")
+        raise HTTPException(status_code=404, detail="Get Configuration Failed")
 
 
 
