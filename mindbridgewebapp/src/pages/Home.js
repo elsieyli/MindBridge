@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react';
 import NavBar from '../components/NavBar';
 import SideBar from '../components/SideBar';
@@ -26,3 +27,11 @@ function Home() {
   }
   
 export default Home;
+=======
+export default function Home() {
+	return (
+		<div>
+		</div>
+	)
+}
+>>>>>>> 6a13b3328b69ce82154e3feb7134c245f01afc09
