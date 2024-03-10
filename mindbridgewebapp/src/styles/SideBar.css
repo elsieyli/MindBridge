@@ -1,16 +1,16 @@
 .sidebar {
     width: 10vw;
     display: flex;
-    justify-content: center;
+    align-items: center;
     min-height: 87.4vh;
     background-color: #32477b;
+    background-color: #43eb9c;
+    flex-direction: column;
+    padding: 0 10px;
 }
 
 .sideimage {
-    height: 200px;
-    width: auto;
-    margin: -80px;
-    margin-top: -30px;
+    width: 100%;
 }
 
 .message {

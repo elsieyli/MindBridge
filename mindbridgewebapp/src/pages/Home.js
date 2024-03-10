@@ -53,7 +53,6 @@ function Home() {
             <Button key={buttonData.text} audio={buttonData.audio} image={buttonData.icon} text={buttonData.text} />
           ))}
         </div>
-
         <SideBar />
       </div>
     </div>

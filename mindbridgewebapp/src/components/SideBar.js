@@ -1,7 +1,9 @@
 import React from "react";
 import {NavLink, useLocation} from "react-router-dom";
-import HappyFace from "../assets/happy.png";
+import HappyFace from "../assets/HappyFace.png";
 import Message from "../assets/message.png";
+import CWheel from "../assets/cwheel.png";
+import Plus from "../assets/plus.jpg";
 
 import "../styles/SideBar.css";
 
@@ -21,6 +23,18 @@ export default function SideBar() {
             to={linkTo}
         >
             <img src={imageSource} className= {`${imageClassName}`}  />
+        </NavLink>
+        <NavLink
+            className=''
+            to="colourwheel"
+        >
+            <img src={CWheel} className= {`${imageClassName}`}  />
+        </NavLink>
+        <NavLink
+            className=''
+            to="add"
+        >
+            <img src={""} className= ''  />
         </NavLink>
     </div>
   );
