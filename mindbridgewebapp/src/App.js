@@ -14,7 +14,6 @@ function App() {
           <Route path="/Profile" element={<Profile />} />
           <Route path="/Emotion" element={<Emotion />}/>
         </Routes>
-        <Button/>
       </Router>
     </div>
   );
