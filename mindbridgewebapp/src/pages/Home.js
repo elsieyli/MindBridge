@@ -2,9 +2,7 @@ import React from 'react';
 import NavBar from '../components/NavBar';
 import SideBar from '../components/SideBar';
 import Button from '../components/Button';
-import './home.css';
 
-// Import all the required icons
 import foodIcon from '../assets/FoodIcon.png';
 import waterIcon from '../assets/water.png';
 import outsideIcon from '../assets/outside.png';
