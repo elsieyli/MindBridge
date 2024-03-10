@@ -1,21 +1,27 @@
 import React from "react";
-import {NavLink} from "react-router-dom";
+import {NavLink, useLocation} from "react-router-dom";
 import HappyFace from "../assets/HappyFace.png";
+import Message from "../assets/message.png";
 
 import "../styles/SideBar.css";
 
 export default function SideBar() {
-	return (	
-		<div className = 'sidebar'>
-			<NavLink 
-				className = ''
-				to={"/Emotion"} >
-				<img src={HappyFace} className= 'emotions'/>
-			</NavLink>
-		</div>
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
 
-//make the emotions reactive to go back to the commands 
+  // Define image and link variables based on the page
+  const imageSource = isHomePage ? HappyFace : Message;
+  const linkTo = isHomePage ? '/Emotion' : '/';
+  const imageClassName = isHomePage ? 'sideimage' : 'message';
 
-
-	);
+  return (	
+    <div className='sidebar'>
+      <NavLink
+        className={({ isActive }) => isActive ? '' : ''}
+        to={linkTo}
+      >
+        <img src={imageSource} className= {`${imageClassName}`}  />
+      </NavLink>
+    </div>
+  );
 }
