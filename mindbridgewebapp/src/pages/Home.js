@@ -11,6 +11,8 @@ import readIcon from '../assets/read.png';
 import showerIcon from '../assets/shower.png';
 import sleepIcon from '../assets/sleep.png';
 import toiletIcon from '../assets/toilet.png';
+
+import sleepAudio from '../audio/Sleep.m4a';
 // If more icons are added, import them similarly
 
 function Home() {
@@ -31,9 +33,7 @@ function Home() {
       <NavBar />
       <div className="main-content">
         <div className="buttons-container">
-          {buttonsData.map((button, index) => (
-            <Button key={index} icon={button.icon} text={button.text} />
-          ))}
+            return <Button audio={sleepAudio} image={sleepIcon} />
         </div>
         <SideBar />
       </div>
