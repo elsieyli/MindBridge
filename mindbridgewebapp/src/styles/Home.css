@@ -12,12 +12,18 @@
   
   .main-content {
     display: flex;
+    width: 100%;
   }
   
   
   .buttons-container {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%/3, max(200px, 100%/7)), 1fr));
     padding: 30px;
-    max-width: 100%; /* Ensure the container doesn't exceed its parent's width */
+    gap: 50px;
+    width: 100%; /* Ensure the container doesn't exceed its parent's width */
     overflow: auto; /* Enable horizontal scrolling if necessary */
   }
   

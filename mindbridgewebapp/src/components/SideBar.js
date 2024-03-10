@@ -16,12 +16,12 @@ export default function SideBar() {
 
   return (	
     <div className='sidebar'>
-      <NavLink
-        className={({ isActive }) => isActive ? '' : ''}
-        to={linkTo}
-      >
-        <img src={imageSource} className= {`${imageClassName}`}  />
-      </NavLink>
+        <NavLink
+            className={({ isActive }) => isActive ? '' : ''}
+            to={linkTo}
+        >
+            <img src={imageSource} className= {`${imageClassName}`}  />
+        </NavLink>
     </div>
   );
 }

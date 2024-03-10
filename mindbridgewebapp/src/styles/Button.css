@@ -1,17 +1,18 @@
 /* Button.css */
 
 .button {
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   border: none;
   background-color: #e1f5fe; /* light blue */
   text-align: center;
   transition: transform 0.2s ease;
-  padding: 8px 16px; /* smaller padding */
+  height: 75%;
+  width: 100%;
   border-radius: 10px; /* rounded edges */
   box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
-  margin-right: 50px; /* Add space between buttons */
-  margin-top: 50px; /* Add space between buttons */
 }
 
 .button:last-child {
