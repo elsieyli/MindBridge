@@ -1,5 +1,5 @@
 import React from 'react'
-import "../style/Button.css"
+import "../styles/Button.css"
 
 function Button({ image, audio, text }) {
   const playAudio = () => {
