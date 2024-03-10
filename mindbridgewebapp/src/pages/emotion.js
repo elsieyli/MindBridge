@@ -30,10 +30,6 @@ function Emotion() {
   
     return (
       <div className="home">
-
-
-        
-
         <NavBar />
         <div className="main-content">
           <div className="buttons-container">

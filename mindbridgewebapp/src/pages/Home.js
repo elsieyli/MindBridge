@@ -46,11 +46,8 @@ function Home() {
   return (
     <div 
     className="home">
-
-      
       <NavBar />
       <div className="main-content">
-
         <div className="buttons-container">
           {buttonsData.map(buttonData => (
             <Button key={buttonData.text} audio={buttonData.audio} image={buttonData.icon} text={buttonData.text} />

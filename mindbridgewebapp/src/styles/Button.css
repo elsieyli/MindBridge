@@ -22,6 +22,12 @@
   transform: scale(1.05);
 }
 
+.image-container.large img{
+    max-width: 100%;
+    height: auto;
+    width: 300px;
+}
+
 .button img {
   max-width: 100px; /* smaller image size */
   height: auto;
