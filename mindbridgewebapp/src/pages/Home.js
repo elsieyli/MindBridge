@@ -40,7 +40,6 @@ function Home() {
     { icon: toiletIcon, text: 'Toilet',audio: toiletAudio },
     { icon: tvIcon, text: 'TV',audio: tvAudio },
     { icon: toysIcon, text: 'Toys',audio: toysAudio },
-    { icon: readIcon, text: 'Read',audio: readAudio },
     
   ];
 
