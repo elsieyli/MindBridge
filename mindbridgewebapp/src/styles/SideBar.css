@@ -1,4 +1,6 @@
 .sidebar {
+    position: fixed;
+    right: 0;
     margin-left: auto;
     width: 120px;
     min-height: 87.4vh;
