@@ -1,78 +1,99 @@
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
-from src.MongoDB import DB  # Assuming your MongoDB connection class is in 'db.py'
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from fastapi import FastAPI, Security, Request
+from src.application.util import VerifyToken
+from src.helper.MongoDB import DB
+from src.helper.Middleware import TimerMiddleware
+from src.helper.Twilio import SendMessage
+from twilio.twiml.messaging_response import MessagingResponse
 
+from src.application.utils import decode_jwt
+
+
+# Creates app instance
 app = FastAPI()
+security = HTTPBearer()
 
-# Initialize MongoDB connections for configurations and users
-config_db = DB("YourDatabaseName", "Configurations")
-users_db = DB("YourDatabaseName", "Users")
+# Adding Middleware
+app.add_middleware(TimerMiddleware)
 
-# Configuration model
-class ConfigurationModel(BaseModel):
-    name: str
-    icon: str | None = None
-    color: str = "White"
-    colortext: str = "Black"
-    image: str | None = None
+# Storing Information using Databases
+UserLogin = DB("Users", "Login")
 
+@app.post("/sms")
+async def forward_sms(request: Request):
+    # Parse the form data sent by Twilio
+    form_data = await request.form()
+    incoming_msg = form_data.get('Body')
+    from_number = form_data.get('From')
+    
+    # Specify the number you want to forward messages to
+    forward_to_number = "+1234567890"
 
-# Endpoint to update or insert a new configuration
-@app.post("/config")
-async def update_config(item: ConfigurationModel) -> ConfigurationModel:
+    # Create TwiML response to forward the message
+    response = MessagingResponse()
+    message = response.message(f"Forwarded from {from_number}: {incoming_msg}")
+    message.to(forward_to_number)
+    
+    # Return the TwiML
+    return Response(content=str(response), media_type="application/xml")
+
+# Send Message Endpoint with body <Known existing phone number and teacher phone number>
+@app.post("/Send/{body}")
+def SendEndpoint(body: str):
     try:
-        existing_config = config_db.GetDocument({"name": item.name})
-        if existing_config:
-            # If exists, update the configuration
-            config_db.Collection.update_one({"name": item.name}, {"$set": item.dict()})
-        else:
-            # If not, insert a new configuration
-            config_db.InsertDocument(item.dict())
-        return item
-    except Exception as e:
-        raise HTTPException(status_code=400, detail=f"Update Config Failed: {str(e)}")
+        SendMessage(body, DB.GetTeacher().number)
+    except Exception:
+        pass
+
+# Create Update Account Token [[PRIVATE FUNCTION/MIDDLEWARE CALL]]
+def PostNumber(Number: str):
+    pass
 
 
-# Endpoint to get a configuration by name
-@app.get("/config/{name}")
-async def get_config(name: str) -> ConfigurationModel:
-    try:
-        config = config_db.GetDocument({"name": name})
-        if config:
-            return ConfigurationModel(**config)
-        else:
-            raise HTTPException(status_code=404, detail="Configuration Not Found")
-    except Exception as e:
-        raise HTTPException(status_code=404, detail=f"Get Configuration Failed: {str(e)}")
+# Create One More Button
+@app.post("/Teacher/{Number}")
+def PostNumber(Number: str):
+    pass
+
+# Remove one specific Button
+@app.get("/Teacher/{Number}")
+def PostNumber(Number: str):
+    pass
 
 
-# Login model
-class LoginModel(BaseModel):
-    name: str
-    password: str
+# Add one more student
+@app.post("/Teacher/{Number}")
+def PostNuumber(Number: str):
+    pass
 
 
-# Endpoint to verify user identity
-@app.get("/user/{name}/{password}")
-async def verify_identity(name: str, password: str) -> bool:
-    try:
-        user = users_db.GetDocument({"name": name, "password": password})
-        return bool(user)
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Verification Failed: {str(e)}")
+# Remove one Student
+@app.get("/Teacher/{Number}")
+def PostNuumber(Number: str):
+    pass
 
 
-# Endpoint to create or update a user
-@app.post("/userpost/{name}/{password}")
-async def set_identity(name: str, password: str) -> bool:
-    try:
-        existing_user = users_db.GetDocument({"name": name})
-        if existing_user:
-            # Update user password if user exists
-            users_db.Collection.update_one({"name": name}, {"$set": {"password": password}})
-        else:
-            # Insert a new user if not exists
-            users_db.InsertDocument({"name": name, "password": password})
-        return True
-    except Exception as e:
-        raise HTTPException(status_code=400, detail=f"Setting Identity Failed: {str(e)}")
+# Settings
+# Teacher Phone number
+@app.post("/Teacher/{Number}")
+def PostNuumber(Number: str):
+    pass
+
+
+@app.get("/api/public")
+def public():
+    """No access token required to access this route"""
+
+    result = {
+        "status": "success",
+        "msg": ("Hello from a public endpoint! You don't need to be "
+                "authenticated to see this.")
+    }
+    return result
+
+
+@app.post('/api/student')
+def add_student(credentials: HTTPAuthorizationCredentials = Security(security)):
+    token = credentials.credentials
+    payload = decode_jwt(token)
+    return {"message": "Protected data", "user_data": payload}
