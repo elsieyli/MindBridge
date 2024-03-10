@@ -1,78 +1,66 @@
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
-from src.MongoDB import DB  # Assuming your MongoDB connection class is in 'db.py'
+from fastapi import FastAPI, Security
+from src.application.util import VerifyToken
+from src.helper.MongoDB import DB
+from src.helper.Middleware import PreProcessMiddleware, TimerMiddleWare
+from src.helper.Twilio import SendMessage
 
+# Creates app instance
 app = FastAPI()
 
-# Initialize MongoDB connections for configurations and users
-config_db = DB("YourDatabaseName", "Configurations")
-users_db = DB("YourDatabaseName", "Users")
+# Verification Tooken
+auth = VerifyToken()
 
-# Configuration model
-class ConfigurationModel(BaseModel):
-    name: str
-    icon: str | None = None
-    color: str = "White"
-    colortext: str = "Black"
-    image: str | None = None
+# Adding Middleeware
+app.add_middleware(TimerMiddleWare)
+
+# Storing Information using Databases
+UserLogin = DB("Users", "Login")
 
 
-# Endpoint to update or insert a new configuration
-@app.post("/config")
-async def update_config(item: ConfigurationModel) -> ConfigurationModel:
+# Send Message Endpoint with body <Known existing phone number and teacher phone numberr>
+@app.post("/Send/{body}")
+def SendEndpoint(body: str, token: str = Security(auth.verify)):
     try:
-        existing_config = config_db.GetDocument({"name": item.name})
-        if existing_config:
-            # If exists, update the configuration
-            config_db.Collection.update_one({"name": item.name}, {"$set": item.dict()})
-        else:
-            # If not, insert a new configuration
-            config_db.InsertDocument(item.dict())
-        return item
-    except Exception as e:
-        raise HTTPException(status_code=400, detail=f"Update Config Failed: {str(e)}")
+        SendMessage(body, DB.GetTeacher().number)
+    except Exception:
 
 
-# Endpoint to get a configuration by name
-@app.get("/config/{name}")
-async def get_config(name: str) -> ConfigurationModel:
-    try:
-        config = config_db.GetDocument({"name": name})
-        if config:
-            return ConfigurationModel(**config)
-        else:
-            raise HTTPException(status_code=404, detail="Configuration Not Found")
-    except Exception as e:
-        raise HTTPException(status_code=404, detail=f"Get Configuration Failed: {str(e)}")
+# Create Account Endpoint with name, password <-- Returns Token -->
+@app.get("/GetToken")
+def GetToken(token: str = Security(auth.verify)) -> str:
+    return token
 
 
-# Login model
-class LoginModel(BaseModel):
-    name: str
-    password: str
+# Create Update Account Token [[PRIVATE FUNCTION/MIDDLEWARE CALL]]
+def PostNuumber(Number: str):
+    pass
 
 
-# Endpoint to verify user identity
-@app.get("/user/{name}/{password}")
-async def verify_identity(name: str, password: str) -> bool:
-    try:
-        user = users_db.GetDocument({"name": name, "password": password})
-        return bool(user)
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Verification Failed: {str(e)}")
+# Create One More Button
+@app.post("/Teacher/{Number}")
+def PostNuumber(Number: str):
+    pass
+
+# Remove one speific Button
+@app.get("/Teacher/{Number}")
+def PostNuumber(Number: str):
+    pass
 
 
-# Endpoint to create or update a user
-@app.post("/userpost/{name}/{password}")
-async def set_identity(name: str, password: str) -> bool:
-    try:
-        existing_user = users_db.GetDocument({"name": name})
-        if existing_user:
-            # Update user password if user exists
-            users_db.Collection.update_one({"name": name}, {"$set": {"password": password}})
-        else:
-            # Insert a new user if not exists
-            users_db.InsertDocument({"name": name, "password": password})
-        return True
-    except Exception as e:
-        raise HTTPException(status_code=400, detail=f"Setting Identity Failed: {str(e)}")
+# Add one more student
+@app.post("/Teacher/{Number}")
+def PostNuumber(Number: str):
+    pass
+
+
+# Remove one Studuent
+@app.get("/Teacher/{Number}")
+def PostNuumber(Number: str):
+    pass
+
+
+# Settings
+# Teacher Phone number
+@app.post("/Teacher/{Number}")
+def PostNuumber(Number: str):
+    pass

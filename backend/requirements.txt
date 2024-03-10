@@ -2,3 +2,7 @@ fastapi
 uvicorn[standard]
 pymongo[snappy,gssapi,srv,tls]
 python-dotenv
+authlib>=1.0
+requests>=2.27.1
+PyJWT
+pydantic-settings
