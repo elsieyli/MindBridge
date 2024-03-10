@@ -3,7 +3,7 @@ import {NavLink, useLocation} from "react-router-dom";
 import HappyFace from "../assets/HappyFace.png";
 import Message from "../assets/message.png";
 import CWheel from "../assets/cwheel.png";
-import Plus from "../assets/plus.jpg";
+import Plus from "../assets/plus.png";
 
 import "../styles/SideBar.css";
 
@@ -34,7 +34,7 @@ export default function SideBar() {
             className=''
             to="add"
         >
-            <img src={""} className= ''  />
+            <img src={Plus} className= {`${imageClassName}`}  />
         </NavLink>
     </div>
   );
