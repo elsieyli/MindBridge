@@ -23,7 +23,7 @@ function Home() {
     { icon: friendIcon, text: 'Friend' },
     { icon: readIcon, text: 'Read' },
     { icon: showerIcon, text: 'Shower' },
-    { icon: sleepIcon, text: 'Sleep' },
+    { icon: sleepIcon, text: 'Sleep', audio: sleepAudio }, // Assuming you only have audio for sleep
     { icon: toiletIcon, text: 'Toilet' },
     
   ];
@@ -33,7 +33,9 @@ function Home() {
       <NavBar />
       <div className="main-content">
         <div className="buttons-container">
-            return <Button audio={sleepAudio} image={sleepIcon} />
+          {buttonsData.map(buttonData => (
+            <Button key={buttonData.text} audio={buttonData.audio} image={buttonData.icon} text={buttonData.text} />
+          ))}
         </div>
         <SideBar />
       </div>
