@@ -11,6 +11,7 @@ import readIcon from '../assets/read.png';
 import showerIcon from '../assets/shower.png';
 import sleepIcon from '../assets/sleep.png';
 import toiletIcon from '../assets/toilet.png';
+import tvIcon from '../assets/tv.png';
 
 import sleepAudio from '../audio/Sleep.m4a';
 import friendAudio from '../audio/friend.m4a';
@@ -34,7 +35,7 @@ function Home() {
     { icon: showerIcon, text: 'Shower',audio: showerAudio },
     { icon: sleepIcon, text: 'Sleep', audio: sleepAudio }, // Assuming you only have audio for sleep
     { icon: toiletIcon, text: 'Toilet',audio: toiletAudio },
-    { icon: toiletIcon, text: 'Television',audio: tvAudio },
+    { icon: tvIcon, text: 'Television',audio: tvAudio },
     
   ];
 
