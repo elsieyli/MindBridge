@@ -1,14 +1,20 @@
+import {React} from "react";
+import {NavLink} from "react-router-dom";
+import profile from "../assets/profile.jpeg";
+
+import "../styles/NavBar.css";
+
 export default function NavBar() {
-  return (
-	<nav>
-	  <ul>
-		<li>
-		  <a href="/">Home</a>
-		</li>
-		<li>
-		  <a href="/about">About</a>
-		</li>
-	  </ul>
-	</nav>
-  );
+	return (	
+		<div className = 'navbar'>
+			<div className = 'white head-text'>
+				MindBridge
+			</div>
+			<NavLink 
+				className = 'justify-end'
+				to={"/Profile"} >
+				<img src={profile} className= 'image'/>
+			</NavLink>
+		</div>
+	);
 }

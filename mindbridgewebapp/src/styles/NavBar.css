@@ -1,0 +1,46 @@
+@tailwind utilities;
+
+.navbar {
+    width: 100%;
+    height: 100px;
+    background: #21325e;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin: 20px;
+    font-size: 25px;
+}
+
+.image {
+    width: 75x;
+    height: 75px;
+    margin: 0px;
+}
+
+.justify-end {
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+.justify-front{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.justify-between{
+    display: flex;
+    justify-content: space-between;
+}
+
+.white{
+    color: white;
+}
+
+@layer utilities {
+    .head-text {
+        @apply sm:text-5xl text-3xl font-semibold sm:leading-snug font-poppins;
+    }
+}
