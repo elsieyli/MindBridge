@@ -6,8 +6,8 @@ import "../styles/NavBar.css";
 
 export default function NavBar() {
 	return (	
-		<div className = 'navbar'>
-			<div className = 'white head-text'>
+		<div className = 'navbar justify-between'>
+			<div className = 'white head-text justify-front'>
 				MindBridge
 			</div>
 			<NavLink 

@@ -1,5 +1,3 @@
-@tailwind utilities;
-
 .navbar {
     width: 100%;
     height: 100px;
@@ -16,7 +14,8 @@
 .image {
     width: 75x;
     height: 75px;
-    margin: 0px;
+    margin: -6px;
+    margin-right: 16px;
 }
 
 .justify-end {
@@ -39,8 +38,9 @@
     color: white;
 }
 
-@layer utilities {
-    .head-text {
-        @apply sm:text-5xl text-3xl font-semibold sm:leading-snug font-poppins;
-    }
+.head-text {
+    font-size: 3rem; /* Equivalent to text-3xl */
+    font-weight: 600; /* Equivalent to font-semibold */
+    line-height: 2; /* Equivalent to sm:leading-snug */
+    margin-left: 32px;
 }
