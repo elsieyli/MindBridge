@@ -2,6 +2,7 @@ import React from 'react';
 import NavBar from '../components/NavBar';
 import SideBar from '../components/SideBar';
 import Button from '../components/Button';
+import "../styles/Home.css"
 
 import foodIcon from '../assets/FoodIcon.png';
 import waterIcon from '../assets/water.png';
@@ -33,18 +34,19 @@ function Home() {
     { icon: waterIcon, text: 'Water',audio: waterAudio },
     { icon: outsideIcon, text: 'Outside',audio: outsideAudio },
     { icon: friendIcon, text: 'Friend',audio: friendAudio},
-    // { icon: readIcon, text: 'Read',audio: readAudio },
-    // { icon: showerIcon, text: 'Shower',audio: showerAudio },
-    // { icon: sleepIcon, text: 'Sleep', audio: sleepAudio }, // Assuming you only have audio for sleep
-    // { icon: toiletIcon, text: 'Toilet',audio: toiletAudio },
-    // { icon: tvIcon, text: 'TV',audio: tvAudio },
-    // { icon: toysIcon, text: 'Toys',audio: toysAudio },
-    // { icon: readIcon, text: 'Read',audio: readAudio },
+    { icon: readIcon, text: 'Read',audio: readAudio },
+    { icon: showerIcon, text: 'Shower',audio: showerAudio },
+    { icon: sleepIcon, text: 'Sleep', audio: sleepAudio }, // Assuming you only have audio for sleep
+    { icon: toiletIcon, text: 'Toilet',audio: toiletAudio },
+    { icon: tvIcon, text: 'TV',audio: tvAudio },
+    { icon: toysIcon, text: 'Toys',audio: toysAudio },
+    { icon: readIcon, text: 'Read',audio: readAudio },
     
   ];
 
   return (
-    <div className="home">
+    <div 
+    className="home">
       <NavBar />
       <div className="main-content">
 
