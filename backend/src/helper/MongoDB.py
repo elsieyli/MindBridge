@@ -3,6 +3,8 @@ import pymongo
 from dotenv import load_dotenv
 import os
 
+load_dotenv()
+
 
 # DEFINING SCHEMAS
 class Student:
@@ -53,8 +55,8 @@ class User:
 class DB:
     def __init__(self, DatabaseName: str, CollectionName: str):
         load_dotenv()
-        CONNECTION_STRING = os.getenv('CONNECTION_STRING')
-        self.Client = pymongo.MongoClient(CONNECTION_STRING)
+        CONNECTION_STRING = os.environ['CONNECTION_STRING']
+        self.Client = pymongo.MongoClient('mongodb+srv://zoranouslis:yl26gCDmAWkxlwHX@mongodbconnection.sxcikbh.mongodb.net/?retryWrites=true&w=majority&appName=MongoDBConnection')
         self.Collection = self.Client[DatabaseName][CollectionName]
 
     def add_student(self, user_name: str, student: dict) -> bool:
