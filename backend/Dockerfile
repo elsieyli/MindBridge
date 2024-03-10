@@ -1,4 +1,4 @@
-FROM archlinux:base
+FROM --platform=linux/amd64 archlinux:base
 
 # Set the working directory in the container
 WORKDIR /app
