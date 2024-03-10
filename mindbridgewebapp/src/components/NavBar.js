@@ -1,6 +1,6 @@
 import {React} from "react";
 import {NavLink} from "react-router-dom";
-import profile from "../assets/profile.png";
+import profile from "../assets/profile1.png";
 
 import "../styles/NavBar.css";
 
