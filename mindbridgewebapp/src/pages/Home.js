@@ -13,18 +13,28 @@ import sleepIcon from '../assets/sleep.png';
 import toiletIcon from '../assets/toilet.png';
 
 import sleepAudio from '../audio/Sleep.m4a';
+import friendAudio from '../audio/friend.m4a';
+import foodAudio from '../audio/Food.m4a';
+import outsideAudio from '../audio/Outside.m4a';
+import readAudio from '../audio/read.m4a';
+import tvAudio from '../audio/Tv.m4a';
+import toiletAudio from '../audio/Bathroom.m4a';
+import showerAudio from '../audio/shower.m4a';
+import waterAudio from '../audio/Water.m4a';
+
 // If more icons are added, import them similarly
 
 function Home() {
   const buttonsData = [
-    { icon: foodIcon, text: 'Food' },
-    { icon: waterIcon, text: 'Water' },
-    { icon: outsideIcon, text: 'Outside' },
-    { icon: friendIcon, text: 'Friend' },
-    { icon: readIcon, text: 'Read' },
-    { icon: showerIcon, text: 'Shower' },
+    { icon: foodIcon, text: 'Food', audio: foodAudio },
+    { icon: waterIcon, text: 'Water',audio: waterAudio },
+    { icon: outsideIcon, text: 'Outside',audio: outsideAudio },
+    { icon: friendIcon, text: 'Friend',audio: friendAudio},
+    { icon: readIcon, text: 'Read',audio: readAudio },
+    { icon: showerIcon, text: 'Shower',audio: showerAudio },
     { icon: sleepIcon, text: 'Sleep', audio: sleepAudio }, // Assuming you only have audio for sleep
-    { icon: toiletIcon, text: 'Toilet' },
+    { icon: toiletIcon, text: 'Toilet',audio: toiletAudio },
+    { icon: toiletIcon, text: 'Television',audio: tvAudio },
     
   ];
 
