@@ -2,7 +2,7 @@ import React from 'react';
 import NavBar from '../components/NavBar';
 import SideBar from '../components/SideBar';
 import Button from '../components/Button';
-import './home.css';
+import "../styles/Home.css";
 
 import SillyFace from '../assets/SillyFace.png';
 import AngryFace from '../assets/AngryFace.png';
@@ -10,25 +10,35 @@ import SadFace from '../assets/SadFace.png';
 import SickFace from '../assets/SickFace.png';
 import HappyFace from '../assets/HappyFace.png';
 
+import Sick from '../audio/Sick.m4a';
+import Angry from '../audio/Angry.m4a';
+import Happy from '../audio/Happy.m4a';
+import Sad from '../audio/Sad.m4a';
+import Silly from '../audio/Silly.m4a';
+
 
 function Emotion() {
     const buttonsData = [
-        { icon: SillyFace, text: 'Silly' },
-        { icon: AngryFace, text: 'Angry' },
-        { icon: SadFace, text: 'Sad' },
-        { icon: SickFace, text: 'Sick' },
-        { icon: HappyFace, text: 'Happy' },
+        { icon: SillyFace, text: 'Silly', audio: Silly },
+        { icon: AngryFace, text: 'Angry', audio: Angry },
+        { icon: SadFace, text: 'Sad', audio: Sad },
+        { icon: SickFace, text: 'Sick', audio: Sick },
+        { icon: HappyFace, text: 'Happy', audio: Happy },
     
     ];
   
     return (
-      <div className="emotion">
+      <div className="home">
+
+
+        
+
         <NavBar />
         <div className="main-content">
           <div className="buttons-container">
-            {buttonsData.map((button, index) => (
-              <Button key={index} icon={button.icon} text={button.text} />
-            ))}
+          {buttonsData.map(buttonData => (
+            <Button key={buttonData.text} audio={buttonData.audio} image={buttonData.icon} text={buttonData.text} />
+          ))}
           </div>
           <SideBar />
         </div>

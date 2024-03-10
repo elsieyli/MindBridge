@@ -2,7 +2,7 @@ import React from 'react';
 import NavBar from '../components/NavBar';
 import SideBar from '../components/SideBar';
 import Button from '../components/Button';
-import "../styles/Home.css"
+import "../styles/Home.css";
 
 import foodIcon from '../assets/FoodIcon.png';
 import waterIcon from '../assets/water.png';
@@ -47,6 +47,8 @@ function Home() {
   return (
     <div 
     className="home">
+
+      
       <NavBar />
       <div className="main-content">
 

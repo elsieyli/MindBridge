@@ -4,19 +4,20 @@ import { NavLink } from "react-router-dom";
 export default function Sidebar() {
   const buttons = [
     {
-      text: "Button 1",
-      to: "/page1",
-      imageSrc: "path_to_image1",
-      alt: "Image 1",
-      className: "button1-class", // Add your Tailwind CSS classes
-    },
-    {
-      text: "Button 2",
-      to: "/page2",
+      text: "Home",
+      to: "/",
       imageSrc: "path_to_image2",
       alt: "Image 2",
       className: "button2-class",
     },
+    {
+      text: "Emotions",
+      to: "/Emotion",
+      imageSrc: "path_to_image1",
+      alt: "Emotions",
+      className: "button1-class", // Add your Tailwind CSS classes
+    },
+    
     // Add more buttons as needed
   ];
 
