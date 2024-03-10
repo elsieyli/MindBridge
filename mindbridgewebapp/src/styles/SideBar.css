@@ -2,13 +2,12 @@
     margin-left: auto;
     width: 120px;
     min-height: 87.4vh;
-    background: #21325e;
+    background: #32477b;
 }
 
-.sideimage {
-    width: 75x;
-    height: 75px;
-    margin: 10px;
-    margin-right: 22px;
-    margin: 22px;
+.emotions {
+    height: 200px;
+    width: auto;
+    margin: -80px;
+    margin-top: -30px;
 }
