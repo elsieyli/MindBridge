@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import NavBar from '../components/NavBar';
 import SideBar from '../components/SideBar';
 import Button from '../components/Button';
@@ -42,18 +42,22 @@ function Home() {
     { icon: toysIcon, text: 'Toys',audio: toysAudio },
     
   ];
+  const [color, setColor] = useState("#32477b"); // Initial color
+  const handleColorChange = (newColor) => {
+    setColor(newColor);
+  };
 
   return (
     <div 
     className="home">
-      <NavBar />
+      <NavBar color={color}/>
       <div className="main-content">
         <div className="buttons-container">
           {buttonsData.map(buttonData => (
             <Button key={buttonData.text} audio={buttonData.audio} image={buttonData.icon} text={buttonData.text} />
           ))}
         </div>
-        <SideBar />
+        <SideBar setColor={handleColorChange} color={color} />
       </div>
     </div>
   );

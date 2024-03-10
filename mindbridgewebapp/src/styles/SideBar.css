@@ -3,11 +3,14 @@
     display: flex;
     align-items: center;
     min-height: 87.4vh;
-    background-color: #32477b;
-    background-color: #43eb9c;
     flex-direction: column;
     padding: 0 10px;
 }
+
+.imageClassName-first {
+    margin-bottom: 200px; /* Adjust the margin-top value according to your requirement */
+}
+
 
 .sideimage {
     width: 100%;
@@ -18,4 +21,34 @@
     width: auto;
     margin: 10px;
     margin-top: 28px;
+}
+
+.colorWheel {
+    position: relative;
+    cursor: pointer;
+}
+
+.colorWheelDropdown {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 5px;
+    z-index: 1000;
+}
+
+.colorOption {
+    width: 20px;
+    height: 20px;
+    margin: 5px;
+    border-radius: 50%;
+}
+
+.colorOption:hover {
+    border: 2px solid #000;
 }
