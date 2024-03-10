@@ -33,13 +33,13 @@ function Home() {
     { icon: waterIcon, text: 'Water',audio: waterAudio },
     { icon: outsideIcon, text: 'Outside',audio: outsideAudio },
     { icon: friendIcon, text: 'Friend',audio: friendAudio},
-    { icon: readIcon, text: 'Read',audio: readAudio },
-    { icon: showerIcon, text: 'Shower',audio: showerAudio },
-    { icon: sleepIcon, text: 'Sleep', audio: sleepAudio }, // Assuming you only have audio for sleep
-    { icon: toiletIcon, text: 'Toilet',audio: toiletAudio },
-    { icon: tvIcon, text: 'Television',audio: tvAudio },
-    { icon: toysIcon, text: 'Toys',audio: toysAudio },
-    { icon: readIcon, text: 'Read',audio: readAudio },
+    // { icon: readIcon, text: 'Read',audio: readAudio },
+    // { icon: showerIcon, text: 'Shower',audio: showerAudio },
+    // { icon: sleepIcon, text: 'Sleep', audio: sleepAudio }, // Assuming you only have audio for sleep
+    // { icon: toiletIcon, text: 'Toilet',audio: toiletAudio },
+    // { icon: tvIcon, text: 'TV',audio: tvAudio },
+    // { icon: toysIcon, text: 'Toys',audio: toysAudio },
+    // { icon: readIcon, text: 'Read',audio: readAudio },
     
   ];
 
@@ -47,11 +47,13 @@ function Home() {
     <div className="home">
       <NavBar />
       <div className="main-content">
+
         <div className="buttons-container">
           {buttonsData.map(buttonData => (
             <Button key={buttonData.text} audio={buttonData.audio} image={buttonData.icon} text={buttonData.text} />
           ))}
         </div>
+
         <SideBar />
       </div>
     </div>

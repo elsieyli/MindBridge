@@ -11,9 +11,12 @@ function Button({ image, audio, text }) {
   };
 
   return (
-    <div className="button" onClick={playAudio}>
-      <img src={image} alt={text} />
-      <p className="button-text">{text}</p>
+    <div 
+    className="button" 
+    onClick={playAudio}
+    >
+    <img src={image} alt={text} className='img'/>
+    <p className="button-text">{text}</p>
     </div>
   );
 }
