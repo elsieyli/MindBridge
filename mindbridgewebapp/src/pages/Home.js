@@ -47,6 +47,8 @@ function Home() {
   return (
     <div 
     className="home">
+
+      
       <NavBar />
       <div className="main-content">
 

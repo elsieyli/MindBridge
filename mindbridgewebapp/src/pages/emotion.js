@@ -31,7 +31,7 @@ function Emotion() {
       <div className="home">
 
 
-        WAZZAP PLAYAAAAAA
+        
 
         <NavBar />
         <div className="main-content">
