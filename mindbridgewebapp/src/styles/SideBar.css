@@ -1,0 +1,21 @@
+.sidebar {
+    width: 10vw;
+    display: flex;
+    align-items: center;
+    min-height: 87.4vh;
+    background-color: #32477b;
+    background-color: #43eb9c;
+    flex-direction: column;
+    padding: 0 10px;
+}
+
+.sideimage {
+    width: 100%;
+}
+
+.message {
+    height: 100px;
+    width: auto;
+    margin: 10px;
+    margin-top: 28px;
+}

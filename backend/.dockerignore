@@ -1,3 +1,7 @@
 .gitignore
 .git
 README.md
+venv
+.dockerignore
+Dockerfile
+Dockerfile.prod

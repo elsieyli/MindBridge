@@ -1,0 +1,42 @@
+/* Button.css */
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  background-color: #e1f5fe; /* light blue */
+  text-align: center;
+  transition: transform 0.2s ease;
+  height: 75%;
+  width: 100%;
+  border-radius: 10px; /* rounded edges */
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.button:last-child {
+  margin-right: 0; /* No margin for the last button */
+}
+
+.button:hover {
+  transform: scale(1.05);
+}
+
+.image-container.large img{
+    max-width: 100%;
+    height: auto;
+    width: 300px;
+}
+
+.button img {
+  max-width: 100px; /* smaller image size */
+  height: auto;
+  margin-right: 8px; /* Add space between image and text */
+}
+
+.button p {
+  margin: 0;
+  font-size: 28px;
+  color: #333;
+}
