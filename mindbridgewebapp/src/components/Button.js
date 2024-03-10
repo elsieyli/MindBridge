@@ -1,7 +1,7 @@
 import React from 'react'
 import "../styles/Button.css"
 
-function Button({ image, audio, text }) {
+function Button({ image, audio, text, className}) {
   const playAudio = () => {
     if (audio) {
       const audioClip = new Audio(audio);
@@ -15,7 +15,7 @@ function Button({ image, audio, text }) {
     className="button" 
     onClick={playAudio}
     >
-    <img src={image} alt={text} className='img'/>
+    <img src={image} alt={text} className={`img ${className}`}/>
     <p className="button-text">{text}</p>
     </div>
   );

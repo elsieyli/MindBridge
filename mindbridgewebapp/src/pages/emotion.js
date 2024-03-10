@@ -3,6 +3,7 @@ import NavBar from '../components/NavBar';
 import SideBar from '../components/SideBar';
 import Button from '../components/Button';
 import "../styles/Home.css";
+import "../styles/Emotion.css";
 
 import SillyFace from '../assets/SillyFace.png';
 import AngryFace from '../assets/AngryFace.png';
@@ -19,11 +20,11 @@ import Silly from '../audio/Silly.m4a';
 
 function Emotion() {
     const buttonsData = [
-        { icon: SillyFace, text: 'Silly', audio: Silly },
-        { icon: AngryFace, text: 'Angry', audio: Angry },
-        { icon: SadFace, text: 'Sad', audio: Sad },
-        { icon: SickFace, text: 'Sick', audio: Sick },
-        { icon: HappyFace, text: 'Happy', audio: Happy },
+        { icon: SillyFace, text: 'Silly', audio: Silly, className: 'faces'},
+        { icon: AngryFace, text: 'Angry', audio: Angry, className: 'faces'},
+        { icon: SadFace, text: 'Sad', audio: Sad, className: 'faces'},
+        { icon: SickFace, text: 'Sick', audio: Sick, className: 'faces'},
+        { icon: HappyFace, text: 'Happy', audio: Happy, className: 'faces'},
     
     ];
   
@@ -37,7 +38,13 @@ function Emotion() {
         <div className="main-content">
           <div className="buttons-container">
           {buttonsData.map(buttonData => (
-            <Button key={buttonData.text} audio={buttonData.audio} image={buttonData.icon} text={buttonData.text} />
+            <Button 
+            key={buttonData.text}
+            audio={buttonData.audio}
+            image={buttonData.icon}
+            text={buttonData.text}
+            className={buttonData.className}
+             />
           ))}
           </div>
           <SideBar />
