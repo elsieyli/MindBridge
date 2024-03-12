@@ -1,13 +1,12 @@
-version: '3.8'
+version: "3.8"
 
 services:
-  web:
-    build: ./backend
-    ports:
-      - "5000:5000"
+    web:
+        build: ./backend
+        ports:
+            - "3001:3001"
 
-  frontend:
-    build: ./mindbridgewebapp
-    ports:
-      - "80:80"
-
+    frontend:
+        build: ./mindbridge
+        ports:
+            - "81:81"

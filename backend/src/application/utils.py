@@ -1,14 +1,11 @@
 from fastapi import HTTPException
 from jose import jwt
 import httpx
+import os
 
-
-AUTH0_DOMAIN = "dev-5tpzd1vi.us.auth0.com"
-API_AUDIENCE = "https://dev-5tpzd1vi.us.auth0.com/api/v2/"
-ALGORITHMS = ["RS256"]
 
 def get_jwks():
-    url = f'https://{AUTH0_DOMAIN}/.well-known/jwks.json'
+    url = f"https://{os.environ['AUTH0_DOMAIN']}/.well-known/jwks.json"
     with httpx.Client() as client:
         resp = client.get(url)
         return resp.json()
@@ -32,9 +29,9 @@ def decode_jwt(token: str):
             payload = jwt.decode(
                 token,
                 rsa_key,
-                algorithms=ALGORITHMS,
-                audience=API_AUDIENCE,
-                issuer=f'https://{AUTH0_DOMAIN}/'
+                algorithms=os.environ['AUTH0_ALGORITHMS'],
+                audience=os.environ['AUTH0_API_AUDIENCE'],
+                issuer=f"https://{os.environ['AUTH0_DOMAIN']}/"
             )
             return payload
         except jwt.JWTError as e:

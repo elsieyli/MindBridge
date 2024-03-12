@@ -8,3 +8,4 @@ PyJWT
 pydantic-settings
 twilio
 httpx
+python-jose
