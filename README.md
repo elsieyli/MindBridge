@@ -14,7 +14,7 @@ MindBridge is an innovative communication aid designed for non-verbal autistic c
 Clone the repository to your local machine:
 
 ```bash
-git clone https://github.com/yourusername/mindbridge.git
+git clone https://github.com/elsieyli/mindbridge.git
 
 cd mindbridge
 
