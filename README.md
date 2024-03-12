@@ -18,9 +18,7 @@ git clone https://github.com/yourusername/mindbridge.git
 
 cd mindbridge
 
-npm install
-
-npm start
+docker compose up
 
 ## Acknowledgements
 Children and families who provided invaluable feedback.
