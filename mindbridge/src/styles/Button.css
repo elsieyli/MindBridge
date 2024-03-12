@@ -9,7 +9,7 @@
 	background-color: #e1f5fe; /* light blue */
 	text-align: center;
 	transition: transform 0.2s ease;
-	height: 75%;
+	height: 100%;
 	width: 100%;
 	border-radius: 10px; /* rounded edges */
 	box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
