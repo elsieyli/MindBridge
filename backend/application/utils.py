@@ -3,7 +3,7 @@ from jose import jwt
 import httpx
 import os
 
-from src.common import get_secret
+from common import get_secret
 
 
 def get_jwks(domain):

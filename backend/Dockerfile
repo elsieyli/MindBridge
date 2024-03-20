@@ -16,4 +16,4 @@ COPY . /app
 RUN pip install --break-system-packages --no-cache-dir -r requirements.txt
 
 # Run the command to start uvicorn
-CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "3001"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "3001"]

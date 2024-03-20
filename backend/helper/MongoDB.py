@@ -1,5 +1,5 @@
 import pymongo
-from src.common import get_secret
+from common import get_secret
 
 
 # DEFINING SCHEMAS

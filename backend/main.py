@@ -1,14 +1,13 @@
 from arrow import get
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from fastapi import FastAPI, Security, Request, Response
-from src.helper.MongoDB import DB
-from src.helper.Middleware import TimerMiddleware
+from helper.MongoDB import DB
+from helper.Middleware import TimerMiddleware
 from fastapi.middleware.cors import CORSMiddleware
-from src.helper.Twilio import SendMessage
+from helper.Twilio import SendMessage
 from twilio.twiml.messaging_response import MessagingResponse
-import src.common
-
-from src.application.utils import decode_jwt
+from common import get_secret
+from application.utils import decode_jwt
 from dotenv import load_dotenv
 
 
@@ -88,9 +87,13 @@ def add_student(credentials: HTTPAuthorizationCredentials = Security(security)):
     return {"message": "Protected data", "user_data": payload}
 
 @app.get('/api/secret')
-def get_secret():
+def get_secrets():
     secret_name = "mindbridge"
     region_name = "us-east-2"
-    secret = src.common.get_secret(secret_name, region_name)
+    secret = get_secret(secret_name, region_name)
 
     return {"AUTH0_CLIENT_ID": secret['AUTH0_CLIENT_ID'], "AUTH0_DOMAIN": secret['AUTH0_DOMAIN']}
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=3001)

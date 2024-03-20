@@ -1,5 +1,5 @@
 from twilio.rest import Client
-from src.common import get_secret
+from common import get_secret
 
 secret = get_secret("mindbridge", "us-east-2")
 account_sid = secret['TWILIO_ACCOUNT_SID']
