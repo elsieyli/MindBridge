@@ -2,6 +2,7 @@ from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from fastapi import FastAPI, Security, Request, Response
 from src.helper.MongoDB import DB
 from src.helper.Middleware import TimerMiddleware
+from fastapi.middleware.cors import CORSMiddleware
 from src.helper.Twilio import SendMessage
 from twilio.twiml.messaging_response import MessagingResponse
 
@@ -17,6 +18,18 @@ security = HTTPBearer()
 
 # Adding Middleware
 app.add_middleware(TimerMiddleware)
+origins = [
+    "http://localhost",
+    "http://localhost:3000",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Storing Information using Databases
 UserLogin = DB("Users", "Login")
