@@ -1,4 +1,11 @@
+import { useAuth0 } from "@auth0/auth0-react";
+
 export default async function Test() {
+    const { getAccessTokenSilently } = useAuth0();
+    const token = await getAccessTokenSilently({
+        audience: `${process.env.REACT_APP_AUTH0_AUDIENCE}`
+    });
+    console.log(token);
     const res1 = await fetch('http://localhost:3001/api/public', {
         method: 'GET',
         headers: {
@@ -13,6 +20,7 @@ export default async function Test() {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
             }
         }).then(response => {
             return response.json();

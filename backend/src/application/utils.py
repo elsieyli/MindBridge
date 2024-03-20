@@ -3,17 +3,23 @@ from jose import jwt
 import httpx
 import os
 
+from src.common import get_secret
 
-def get_jwks():
-    url = f"https://{os.environ['AUTH0_DOMAIN']}/.well-known/jwks.json"
+
+def get_jwks(domain):
+    url = f"https://{domain}/.well-known/jwks.json"
     with httpx.Client() as client:
         resp = client.get(url)
         return resp.json()
 
 
 def decode_jwt(token: str):
-    jwks = get_jwks()
-    unverified_header = jwt.get_unverified_header(token)
+    secret = get_secret("mindbridge", "us-east-2")
+    jwks = get_jwks(secret['AUTH0_DOMAIN'])
+    try:
+        unverified_header = jwt.get_unverified_header(token)
+    except jwt.JWTError as e:
+        raise HTTPException(status_code=403, detail=str(e), headers={"WWW-Authenticate": f"Bearer {token}"})
     rsa_key = {}
     for key in jwks['keys']:
         if key['kid'] == unverified_header['kid']:
@@ -29,9 +35,9 @@ def decode_jwt(token: str):
             payload = jwt.decode(
                 token,
                 rsa_key,
-                algorithms=os.environ['AUTH0_ALGORITHMS'],
-                audience=os.environ['AUTH0_API_AUDIENCE'],
-                issuer=f"https://{os.environ['AUTH0_DOMAIN']}/"
+                algorithms=secret['AUTH0_ALGORITHMS'],
+                audience=secret['AUTH0_AUDIENCE'],
+                issuer=f"https://{secret['AUTH0_DOMAIN']}/"
             )
             return payload
         except jwt.JWTError as e:

@@ -1,12 +1,10 @@
 from twilio.rest import Client
-import os
-from dotenv import load_dotenv
+from src.common import get_secret
 
-load_dotenv()
-
-account_sid = os.getenv('TWILIO_ACCOUNT_SID')
-auth_token = os.getenv('TWILIO_AUTH_TOKEN')
-twilio_phone_number = os.getenv('TWILIO_PHONE_NUMBER')
+secret = get_secret("mindbridge", "us-east-2")
+account_sid = secret['TWILIO_ACCOUNT_SID']
+auth_token = secret['TWILIO_AUTH_TOKEN']
+twilio_phone_number = secret['TWILIO_PHONE_NUMBER']
 
 client = Client(account_sid, auth_token)
 

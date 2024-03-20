@@ -9,3 +9,5 @@ pydantic-settings
 twilio
 httpx
 python-jose
+boto3
+botocore
