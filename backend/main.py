@@ -1,99 +1,71 @@
-from arrow import get
-from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
-from fastapi import FastAPI, Security, Request, Response
-from helper.MongoDB import DB
-from helper.Middleware import TimerMiddleware
+import secure
+import uvicorn
+from dependencies import validate_token
+from fastapi import Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from helper.Twilio import SendMessage
-from twilio.twiml.messaging_response import MessagingResponse
-from common import get_secret
-from application.utils import decode_jwt
-from dotenv import load_dotenv
+from fastapi.responses import JSONResponse
+from starlette.exceptions import HTTPException as StarletteHTTPException
 
-
-load_dotenv()
-
-# Creates app instance
 app = FastAPI()
-security = HTTPBearer()
 
-# Adding Middleware
-app.add_middleware(TimerMiddleware)
-origins = [
-    "http://localhost",
-    "http://localhost:3000",
-]
+# csp = secure.ContentSecurityPolicy().default_src("'self'").frame_ancestors("'none'")
+# hsts = secure.StrictTransportSecurity().max_age(31536000).include_subdomains()
+# referrer = secure.ReferrerPolicy().no_referrer()
+# cache_value = secure.CacheControl().no_cache().no_store().max_age(0).must_revalidate()
+# x_frame_options = secure.XFrameOptions().deny()
+
+# secure_headers = secure.Secure(
+#     csp=csp,
+#     hsts=hsts,
+#     referrer=referrer,
+#     cache=cache_value,
+#     xfo=x_frame_options,
+# )
+
+
+@app.middleware("http")
+async def set_secure_headers(request, call_next):
+    response = await call_next(request)
+    # secure_headers.framework.fastapi(response)
+    return response
+
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_origins=["http://localhost:3000", "http://localhost:4040", "http://localhost:3001"],
+    allow_methods=["GET"],
+    allow_headers=["Authorization", "Content-Type"],
+    max_age=86400,
 )
 
-# Storing Information using Databases
-UserLogin = DB("Users", "Login")
 
-@app.post("/sms")
-async def forward_sms(request: Request):
-    # Parse the form data sent by Twilio
-    form_data = await request.form()
-    incoming_msg = form_data.get('Body')
-    from_number = form_data.get('From')
+@app.exception_handler(StarletteHTTPException)
+async def http_exception_handler(request, exc):
+    message = str(exc.detail)
 
-    # Specify the number you want to forward messages to
-    forward_to_number = "+1234567890"
-
-    # Create TwiML response to forward the message
-    response = MessagingResponse()
-    message = response.message(f"Forwarded from {from_number}: {incoming_msg}")
-    message.to(forward_to_number)
-
-    # Return the TwiML
-    return Response(content=str(response), media_type="application/xml")
-
-# Send Message Endpoint with body <Known existing phone number and teacher phone number>
-@app.post("/Send/{body}")
-def SendEndpoint(body: str):
-    try:
-        SendMessage(body, DB.GetTeacher().number)
-    except Exception:
-        pass
-
-# Remove one specific Button
-@app.get("/Teacher/{Number}")
-def PostNumber(Number: str):
-    pass
+    return JSONResponse({"message": message}, status_code=exc.status_code)
 
 
-
-@app.get("/api/public")
+@app.get("/api/messages/public")
 def public():
-    """No access token required to access this route"""
-
-    result = {
-        "status": "success",
-        "msg": ("Hello from a public endpoint! You don't need to be "
-                "authenticated to see this.")
-    }
-    return result
+    return {"text": "This is a public message."}
 
 
-@app.get('/api/student')
-def add_student(credentials: HTTPAuthorizationCredentials = Security(security)):
-    token = credentials.credentials
-    payload = decode_jwt(token)
-    return {"message": "Protected data", "user_data": payload}
+@app.get("/api/messages/protected", dependencies=[Depends(validate_token)])
+def protected():
+    return {"text": "This is a protected message."}
 
-@app.get('/api/secret')
-def get_secrets():
-    secret_name = "mindbridge"
-    region_name = "us-east-2"
-    secret = get_secret(secret_name, region_name)
 
-    return {"AUTH0_CLIENT_ID": secret['AUTH0_CLIENT_ID'], "AUTH0_DOMAIN": secret['AUTH0_DOMAIN']}
+@app.get("/api/messages/admin", dependencies=[Depends(validate_token)])
+def admin():
+    return {"text": "This is an admin message."}
+
 
 if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=3001)
+    uvicorn.run(
+        "main:app",
+        host="0.0.0.0",
+        port=3001,
+        reload=True,
+        server_header=False,
+    )
