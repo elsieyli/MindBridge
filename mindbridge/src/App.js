@@ -1,21 +1,17 @@
-import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import "./styles/App.css";
+import { Routes, Route } from 'react-router-dom';
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
-import Emotion from "./pages/emotion";
-import Login from "./pages/login";
-import Button from "./components/Button";
+import Emotion from "./pages/Emotion";
 
 function App() {
   return (
     <div className="App">
-      <Router>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/Profile" element={<Profile />} />
-          <Route path="/Emotion" element={<Emotion />}/>
-        </Routes>
-      </Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/emotion" element={<Emotion />} />
+      </Routes>
     </div>
   );
 }

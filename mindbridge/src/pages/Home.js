@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { withAuthenticationRequired } from '@auth0/auth0-react';
+import Loading from '../components/Loading';
+import React, { useState } from "react";
 import NavBar from '../components/NavBar';
 import SideBar from '../components/SideBar';
 import Button from '../components/Button';
@@ -31,16 +33,16 @@ import toysAudio from '../audio/Toys.m4a';
 function Home() {
   const buttonsData = [
     { icon: foodIcon, text: 'Food', audio: foodAudio },
-    { icon: waterIcon, text: 'Water',audio: waterAudio },
-    { icon: outsideIcon, text: 'Outside',audio: outsideAudio },
-    { icon: friendIcon, text: 'Friend',audio: friendAudio},
-    { icon: readIcon, text: 'Read',audio: readAudio },
-    { icon: showerIcon, text: 'Shower',audio: showerAudio },
+    { icon: waterIcon, text: 'Water', audio: waterAudio },
+    { icon: outsideIcon, text: 'Outside', audio: outsideAudio },
+    { icon: friendIcon, text: 'Friend', audio: friendAudio },
+    { icon: readIcon, text: 'Read', audio: readAudio },
+    { icon: showerIcon, text: 'Shower', audio: showerAudio },
     { icon: sleepIcon, text: 'Sleep', audio: sleepAudio }, // Assuming you only have audio for sleep
-    { icon: toiletIcon, text: 'Toilet',audio: toiletAudio },
-    { icon: tvIcon, text: 'TV',audio: tvAudio },
-    { icon: toysIcon, text: 'Toys',audio: toysAudio },
-    
+    { icon: toiletIcon, text: 'Toilet', audio: toiletAudio },
+    { icon: tvIcon, text: 'TV', audio: tvAudio },
+    { icon: toysIcon, text: 'Toys', audio: toysAudio },
+
   ];
   const [color, setColor] = useState("#32477b"); // Initial color
   const handleColorChange = (newColor) => {
@@ -48,9 +50,9 @@ function Home() {
   };
 
   return (
-    <div 
-    className="home">
-      <NavBar color={color}/>
+    <div
+      className="home">
+      <NavBar color={color} />
       <div className="main-content">
         <div className="buttons-container">
           {buttonsData.map(buttonData => (
@@ -63,4 +65,6 @@ function Home() {
   );
 }
 
-export default Home;
+export default withAuthenticationRequired(Home, {
+  onRedirecting: () => <Loading />,
+});

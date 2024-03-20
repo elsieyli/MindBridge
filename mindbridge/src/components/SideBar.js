@@ -21,7 +21,7 @@ export default function SideBar({ setColor, color }) {
   };
 
   const imageSource = isHomePage ? HappyFace : Message;
-  const linkTo = isHomePage ? '/Emotion' : '/';
+  const linkTo = isHomePage ? '/emotion' : '/';
   const imageClassName = isHomePage ? 'sideimage' : 'message';
 
   const isFirstImage = isHomePage; // Assuming the first image is for the home page
