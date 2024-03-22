@@ -9,8 +9,16 @@ import "../styles/NavBar.css";
 const LogoutButton = () => {
   const { logout } = useAuth0();
 
+  const handleLogout = () => {
+    logout({
+      logoutParams: {
+        returnTo: window.location.origin,
+      },
+    });
+  };
+  
   return (
-    <button onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
+    <button onClick={handleLogout}>
       Log Out
     </button>
   );
