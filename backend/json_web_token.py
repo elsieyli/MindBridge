@@ -11,9 +11,10 @@ class JsonWebToken:
 
     jwt_access_token: str
     secret = get_secret("mindbridge", "us-east-2")
+    print(secret)
     auth0_issuer_url: str = f"https://{secret['AUTH0_DOMAIN']}/"
-    auth0_audience: str = secret['AUTH0_API_AUDIENCE']
-    algorithm: str = secret['AUTH0_ALGORITHMS'][0]
+    auth0_audience: str = secret['AUTH0_AUDIENCE']
+    algorithm: str = secret['AUTH0_ALGORITHM']
     jwks_uri: str = f"{auth0_issuer_url}.well-known/jwks.json"
 
     def validate(self):

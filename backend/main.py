@@ -6,35 +6,35 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
-app = FastAPI()
+app = FastAPI(openapi_url=None)
 
-# csp = secure.ContentSecurityPolicy().default_src("'self'").frame_ancestors("'none'")
-# hsts = secure.StrictTransportSecurity().max_age(31536000).include_subdomains()
-# referrer = secure.ReferrerPolicy().no_referrer()
-# cache_value = secure.CacheControl().no_cache().no_store().max_age(0).must_revalidate()
-# x_frame_options = secure.XFrameOptions().deny()
+csp = secure.ContentSecurityPolicy().default_src("'self'").frame_ancestors("'none'")
+hsts = secure.StrictTransportSecurity().max_age(31536000).include_subdomains()
+referrer = secure.ReferrerPolicy().no_referrer()
+cache_value = secure.CacheControl().no_cache().no_store().max_age(0).must_revalidate()
+x_frame_options = secure.XFrameOptions().deny()
 
-# secure_headers = secure.Secure(
-#     csp=csp,
-#     hsts=hsts,
-#     referrer=referrer,
-#     cache=cache_value,
-#     xfo=x_frame_options,
-# )
+secure_headers = secure.Secure(
+    csp=csp,
+    hsts=hsts,
+    referrer=referrer,
+    cache=cache_value,
+    xfo=x_frame_options,
+)
 
 
 @app.middleware("http")
 async def set_secure_headers(request, call_next):
     response = await call_next(request)
-    # secure_headers.framework.fastapi(response)
+    secure_headers.framework.fastapi(response)
     return response
 
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:3000", "http://localhost:4040", "http://localhost:3001"],
-    allow_methods=["GET"],
-    allow_headers=["Authorization", "Content-Type"],
+    allow_methods=["*"],
+    allow_headers=["*"],
     max_age=86400,
 )
 
@@ -68,4 +68,5 @@ if __name__ == "__main__":
         port=3001,
         reload=True,
         server_header=False,
+        debug=True,
     )
