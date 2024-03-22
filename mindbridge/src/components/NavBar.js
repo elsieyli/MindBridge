@@ -16,7 +16,7 @@ const LogoutButton = () => {
       },
     });
   };
-  
+
   return (
     <button onClick={handleLogout}>
       Log Out
@@ -27,13 +27,13 @@ const LogoutButton = () => {
 export default function NavBar({ color }) {
   return (
     <div className="navbar justify-between" style={{ backgroundColor: color }}>
-      <div className="white head-text justify-front">MindBridge</div>
+      <div className="head-text">MindBridge</div>
       <div className="dropdown">
         <NavLink className="justify-end" to={"/profile"}>
           <img src={profile} className="image" alt="Profile" />
           <div className="dropdown-content">
             <NavLink to="/profile/settings">Settings</NavLink>
-            <NavLink><LogoutButton/></NavLink>
+            <NavLink><LogoutButton /></NavLink>
           </div>
         </NavLink>
       </div>

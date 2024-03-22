@@ -4,6 +4,9 @@
 	background: #21325e;
 	background: #2aad85;
 	position: relative;
+	display: flex;
+	justify-self: center;
+	align-items: center;
 }
 
 .image {
@@ -13,26 +16,12 @@
 	margin-right: 24px;
 }
 
-.justify-end {
-	display: flex;
-	justify-content: flex-end;
-}
-
-.justify-front {
-	display: flex;
-	justify-content: flex-start;
-}
-
-.justify-between {
-	display: flex;
-	justify-content: space-between;
-}
-
 .white {
 	color: white;
 }
 
 .head-text {
+	color: white;
 	font-size: 3rem; /* Equivalent to text-3xl */
 	font-weight: 600; /* Equivalent to font-semibold */
 	line-height: 2; /* Equivalent to sm:leading-snug */
