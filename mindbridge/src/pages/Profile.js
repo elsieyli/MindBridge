@@ -1,6 +1,5 @@
 import React from 'react';
-import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
-
+import { useAuth0 } from '@auth0/auth0-react';
 function Profile() {
   const auth = useAuth0();
   return (
@@ -21,6 +20,4 @@ function Profile() {
   );
 }
 
-export default withAuthenticationRequired(Profile, {
-  onRedirecting: () => <div>Loading...</div>,
-});
+export default Profile

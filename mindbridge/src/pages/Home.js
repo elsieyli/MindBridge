@@ -1,5 +1,3 @@
-import { withAuthenticationRequired } from '@auth0/auth0-react';
-import Loading from '../components/Loading';
 import React, { useState } from "react";
 import NavBar from '../components/NavBar';
 import SideBar from '../components/SideBar';
@@ -65,6 +63,4 @@ function Home() {
   );
 }
 
-export default withAuthenticationRequired(Home, {
-  onRedirecting: () => <Loading />,
-});
+export default Home

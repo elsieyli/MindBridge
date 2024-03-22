@@ -16,8 +16,6 @@ import Angry from '../audio/Angry.m4a';
 import Happy from '../audio/Happy.m4a';
 import Sad from '../audio/Sad.m4a';
 import Silly from '../audio/Silly.m4a';
-import { withAuthenticationRequired } from "@auth0/auth0-react";
-
 
 // If more icons are added, import them similarly
 
@@ -51,6 +49,4 @@ function Emotion() {
   );
 }
 
-export default withAuthenticationRequired(Emotion, {
-  onRedirecting: () => <div>Loading...</div>,
-});
+export default Emotion
