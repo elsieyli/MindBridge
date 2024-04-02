@@ -13,17 +13,17 @@ MindBridge is an innovative communication aid designed for non-verbal autistic c
 ## Installation
 Clone the repository to your local machine:
 
-```bash
-git clone https://github.com/elsieyli/mindbridge.git
-
-cd mindbridge
+  ```bash
+  git clone https://github.com/elsieyli/mindbridge.git
+  
+  cd mindbridge
 
 
 prod
 
-```bash
-docker compose build
-docker compose up
+  ```bash
+  docker compose build
+  docker compose up
 
 dev
 
