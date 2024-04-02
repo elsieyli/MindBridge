@@ -20,6 +20,7 @@ cd mindbridge
 
 
 prod
+
 ```bash
 docker compose build
 docker compose up
