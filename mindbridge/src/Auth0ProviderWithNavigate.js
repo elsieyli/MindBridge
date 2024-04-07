@@ -1,30 +1,52 @@
 import { Auth0Provider } from "@auth0/auth0-react";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 export const Auth0ProviderWithNavigate = ({ children }) => {
   const navigate = useNavigate();
+  const [authConfig, setAuthConfig] = useState(null);
 
-  const domain = process.env.REACT_APP_AUTH0_DOMAIN;
-  const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
-  const redirectUri = process.env.REACT_APP_AUTH0_CALLBACK_URL;
-  const audience = process.env.REACT_APP_AUTH0_AUDIENCE;
+  useEffect(() => {
+    const fetchAuthConfig = async () => {
+      try {
+        const res = await fetch("/api/secrets");
+        if (!res.ok) {
+          throw new Error("Failed to fetch auth configuration");
+        }
+        const data = await res.json();
+
+        const domain = data.AUTH0_DOMAIN;
+        const clientId = data.AUTH0_CLIENT_ID;
+        const audience = data.AUTH0_AUDIENCE;
+        const redirectUri = 'http://localhost:3000/callback';
+
+        if (domain && clientId && redirectUri && audience) {
+          setAuthConfig({ domain, clientId, audience, redirectUri });
+        }
+      } catch (error) {
+        console.error("Error fetching auth configuration:", error);
+      }
+    };
+
+    fetchAuthConfig();
+  }, []);
 
   const onRedirectCallback = (appState) => {
     navigate(appState?.returnTo || window.location.pathname);
   };
 
-  if (!(domain && clientId && redirectUri && audience)) {
-    return null;
+  if (!authConfig) {
+    // Render nothing or a loading indicator until the auth config is loaded
+    return null; // Or <Loading /> if you have a loading component
   }
 
   return (
     <Auth0Provider
-      domain={domain}
-      clientId={clientId}
+      domain={authConfig.domain}
+      clientId={authConfig.clientId}
       authorizationParams={{
-        audience: audience,
-        redirect_uri: redirectUri,
+        audience: authConfig.audience,
+        redirect_uri: authConfig.redirectUri,
       }}
       onRedirectCallback={onRedirectCallback}
     >

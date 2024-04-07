@@ -21,10 +21,9 @@
 	align-items: center;
 	grid-template-columns: repeat(
 		auto-fill,
-		minmax(min(100%/3, max(200px, 100%/7)), 1fr)
+		minmax(min(100%/3, max(50px, 100%/6)), 1fr)
 	);
 	padding: 30px;
 	gap: 3% 2.5%;
 	width: 100%; /* Ensure the container doesn't exceed its parent's width */
-	overflow: auto; /* Enable horizontal scrolling if necessary */
 }

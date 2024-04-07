@@ -4,8 +4,6 @@ import { CodeSnippet } from "../components/CodeSnippet";
 import { PageLayout } from "../components/PageLayout";
 
 import '../styles/general.css';
-import '../styles/theme.css';
-import '../styles/components/code-snippet.css'
 
 
 export default function Profile() {

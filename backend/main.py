@@ -5,6 +5,7 @@ from fastapi import Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from starlette.exceptions import HTTPException as StarletteHTTPException
+from common import get_secret
 
 app = FastAPI(openapi_url=None)
 
@@ -32,7 +33,7 @@ async def set_secure_headers(request, call_next):
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://localhost:4040", "http://localhost:3001"],
+    allow_origins=["http://localhost:3000"],
     allow_methods=["*"],
     allow_headers=["*"],
     max_age=86400,
@@ -45,6 +46,14 @@ async def http_exception_handler(request, exc):
 
     return JSONResponse({"message": message}, status_code=exc.status_code)
 
+@app.get("/api/secrets")
+def secrets():
+    secret = get_secret("mindbridge", "us-east-2")
+    return {
+        "AUTH0_DOMAIN": secret['AUTH0_DOMAIN'],
+        "AUTH0_AUDIENCE": secret['AUTH0_AUDIENCE'],
+        "AUTH0_CLIENT_ID": secret['AUTH0_CLIENT_ID']
+    }
 
 @app.get("/api/messages/public")
 def public():

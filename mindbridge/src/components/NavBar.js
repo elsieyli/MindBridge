@@ -29,13 +29,16 @@ export default function NavBar({ color }) {
     <div className="navbar justify-between" style={{ backgroundColor: color }}>
       <div className="head-text">MindBridge</div>
       <div className="dropdown">
-        <NavLink className="justify-end" to={"/profile"}>
-          <img src={profile} className="image" alt="Profile" />
-          <div className="dropdown-content">
+        <div className="min-h-full">
+          <NavLink className="justify-end min-h-full m-0" to={"/profile"}>
+            <img src={profile} className="image" alt="Profile" />
+          </NavLink>
+          <div className="dropdown-content -mt-1">
             <NavLink to="/profile/settings">Settings</NavLink>
             <NavLink><LogoutButton /></NavLink>
           </div>
-        </NavLink>
+        </div>
+
       </div>
     </div>
   );
