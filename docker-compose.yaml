@@ -3,6 +3,8 @@ version: "3.8"
 services:
     web:
         build: ./backend
+        env_file:
+            - ./backend/.env
         ports:
             - "3001:3001"
 

@@ -3,9 +3,6 @@ import json
 from botocore.exceptions import ClientError
 
 def get_secret(secret_name, region_name):
-    secret_name = "mindbridge"
-    region_name = "us-east-2"
-
     # Create a Secrets Manager client
     session = boto3.session.Session()
     client = session.client(
