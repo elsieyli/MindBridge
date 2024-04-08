@@ -25,7 +25,7 @@ def get_secret(secret_name, region_name):
         "AUTH0_DOMAIN": os.getenv("AUTH0_DOMAIN"),
         "AUTH0_AUDIENCE": os.getenv("AUTH0_AUDIENCE"),
         "AUTH0_CLIENT_ID": os.getenv("AUTH0_CLIENT_ID"),
-        "AUTH0_AlGORITHM": os.getenv("AUTH0_AlGORITHM"),
+        "AUTH0_ALGORITHM": os.getenv("AUTH0_ALGORITHM"),
         "MONGODB_CONNECTION_STRING": os.getenv("MONGODB_CONNECTION_STRING"),
         "TWILIO_ACCOUNT_SID": os.getenv("TWILIO_ACCOUNT_SID"),
         "TWILIO_AUTH_TOKEN": os.getenv("TWILIO_AUTH_TOKEN"),
