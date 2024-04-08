@@ -3,6 +3,10 @@ import json
 from botocore.exceptions import ClientError
 import os
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 def get_secret(secret_name, region_name):
     # Create a Secrets Manager client
     # session = boto3.session.Session()
