@@ -1,34 +1,32 @@
-FROM node:14-alpine AS builder
-ENV NODE_ENV production
+# Start with the official Node.js base image to build the React app
+FROM node:16-alpine as build
 
-# Add a work directory
+# Set the working directory
 WORKDIR /app
 
-# Cache and Install dependencies
-COPY package.json .
-COPY yarn.lock .
-RUN npm i
+# Copy package.json and package-lock.json
+COPY package.json package-lock.json ./
 
-# Copy app files
+# Install dependencies
+RUN npm install
+
+# Copy the rest of your frontend app
 COPY . .
 
-# Build the app
+# Build the application
 RUN npm run build
 
-# Bundle static assets with nginx
-FROM nginx:1.21.0-alpine as production
-ENV NODE_ENV production
+# Now, set up the production Nginx server
+FROM nginx:alpine
 
-# Copy built assets from builder
-COPY --from=builder /app/build /usr/share/nginx/html
+# Copy the built files from the build stage
+COPY --from=build /app/build /usr/share/nginx/html
 
-# Add your nginx.conf
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+# Optional: If you have custom nginx configuration, copy it
+COPY nginx.conf /etc/nginx/nginx.conf
 
-# Expose port
+# Expose the port Nginx is listening on
 EXPOSE 80
 
-EXPOSE 443
-
-# Start nginx
+# Start Nginx when the container has launched
 CMD ["nginx", "-g", "daemon off;"]

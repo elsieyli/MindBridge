@@ -1,14 +1,25 @@
 version: "3.8"
 
 services:
-    web:
-        build: ./backend
-        env_file:
-            - ./backend/.env
-        ports:
-            - "3001:3001"
+  backend:
+    build: ./backend
+    volumes:
+      - ./backend:/app
+    env_file:
+      - ./backend/.env
+    networks:
+      - network
 
-    frontend:
-        build: ./mindbridge
-        ports:
-            - "8080:80"
+  frontend:
+    build: ./mindbridge
+    environment:
+      - REACT_APP_REDIRECT_URI='https://localhost/auth/callback'
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - network
+
+networks:
+  network:
+    driver: bridge

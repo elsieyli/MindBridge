@@ -1,20 +1,19 @@
-# pull official base image
-FROM --platform=linux/amd64 node:13.12.0-alpine
+# Use a more recent and supported version of Node.js
+FROM --platform=linux/amd64 node:16-alpine
 
-# set working directory
+# Set the working directory in the container
 WORKDIR /app
 
-# add `/app/node_modules/.bin` to $PATH
+# Add `/app/node_modules/.bin` to $PATH for easier script execution
 ENV PATH /app/node_modules/.bin:$PATH
 
-# install app dependencies
+# Install app dependencies
 COPY package.json ./
 COPY package-lock.json ./
 RUN npm install --silent
-RUN npm install react-scripts@3.4.1 -g --silent
 
-# add app
-COPY . ./
+# Expose port 3000 to access the server
+EXPOSE 3000
 
-# start app
+# Command to run the app
 CMD ["npm", "start"]

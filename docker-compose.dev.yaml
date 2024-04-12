@@ -1,18 +1,33 @@
 version: "3.8"
 
 services:
-    web:
-        build:
-            context: ./backend
-            dockerfile: Dockerfile.dev
-        ports:
-            - "3001:3001"
-        env_file:
-            - ./backend/.env
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3001:3001"
+    env_file:
+      - ./backend/.env
+    volumes:
+      - ./backend:/app  # Mount the backend source directory to /app in the container
+    networks:
+      - network
 
-    frontend:
-        build:
-            context: ./mindbridge
-            dockerfile: Dockerfile.dev
-        ports:
-            - "3000:3000"
+  frontend:
+    build:
+      context: ./mindbridge
+      dockerfile: Dockerfile.dev
+    environment:
+      - REACT_APP_REDIRECT_URI='http://localhost:3000/auth/callback'
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./mindbridge:/app  # Mount the frontend source directory to /app in the container
+      - /app/node_modules
+    networks:
+      - network
+
+networks:
+    network:
+      driver: bridge

@@ -10,10 +10,13 @@ RUN pacman -Syu --noconfirm && \
     pacman -Scc --noconfirm
 
 # Copy the local directory contents to /app in the container
-COPY . /app
+COPY requirements.txt .
+RUN pip install --break-system-packages --no-cache-dir -r requirements.txt
+COPY . .
 
 # Install any needed packages specified in requirements.txt
-RUN pip install --break-system-packages --no-cache-dir -r requirements.txt
+
+EXPOSE 3001
 
 # Run the command to start uvicorn
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "3001"]
