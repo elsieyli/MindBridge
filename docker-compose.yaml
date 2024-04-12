@@ -13,7 +13,7 @@ services:
   frontend:
     build: ./mindbridge
     environment:
-      - REACT_APP_REDIRECT_URI='https://localhost/auth/callback'
+      - REACT_APP_REDIRECT_URI='http://localhost/auth/callback'
     ports:
       - "80:80"
       - "443:443"
