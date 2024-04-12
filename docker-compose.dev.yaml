@@ -7,6 +7,8 @@ services:
       dockerfile: Dockerfile.dev
     ports:
       - "3001:3001"
+    environment:
+      - REDIRECT_URL=http://localhost:3000/callback
     env_file:
       - ./backend/.env
     volumes:
@@ -18,8 +20,6 @@ services:
     build:
       context: ./mindbridge
       dockerfile: Dockerfile.dev
-    environment:
-      - REACT_APP_REDIRECT_URI='http://localhost:3000/auth/callback'
     ports:
       - "3000:3000"
     volumes:

@@ -5,6 +5,8 @@ services:
     build: ./backend
     volumes:
       - ./backend:/app
+    environment:
+      - REDIRECT_URL=http://localhost/callback
     env_file:
       - ./backend/.env
     networks:
@@ -12,8 +14,6 @@ services:
 
   frontend:
     build: ./mindbridge
-    environment:
-      - REACT_APP_REDIRECT_URI='http://localhost/auth/callback'
     ports:
       - "80:80"
       - "443:443"

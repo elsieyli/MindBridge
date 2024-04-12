@@ -52,7 +52,8 @@ def secrets():
     return {
         "AUTH0_DOMAIN": secret['AUTH0_DOMAIN'],
         "AUTH0_AUDIENCE": secret['AUTH0_AUDIENCE'],
-        "AUTH0_CLIENT_ID": secret['AUTH0_CLIENT_ID']
+        "AUTH0_CLIENT_ID": secret['AUTH0_CLIENT_ID'],
+        "REDIRECT_URL": secret['REDIRECT_URL']
     }
 
 @app.get("/api/messages/public")

@@ -18,7 +18,9 @@ export const Auth0ProviderWithNavigate = ({ children }) => {
         const domain = data.AUTH0_DOMAIN;
         const clientId = data.AUTH0_CLIENT_ID;
         const audience = data.AUTH0_AUDIENCE;
-        const redirectUri = 'http://localhost:3000/callback';
+        const redirectUri = data.REDIRECT_URL;
+
+        console.log("Auth0 configuration loaded:", { domain, clientId, audience, redirectUri })
 
         if (domain && clientId && redirectUri && audience) {
           setAuthConfig({ domain, clientId, audience, redirectUri });
