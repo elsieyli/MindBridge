@@ -26,20 +26,21 @@ export default function SideBar({ setColor, color }) {
 
   const isFirstImage = isHomePage; // Assuming the first image is for the home page
 
-  return (  
-    <div className='sidebar' style={{ backgroundColor: sidebarColor }}>
+  return (
+    <div className="sidebar-container">
+      <div className='sidebar' style={{ backgroundColor: sidebarColor }}>
         <NavLink
-            className={isFirstImage ? 'firstImageContainer' : ''}
-            to={linkTo}
-            style={{ marginTop : '100px'}}
+          className={isFirstImage ? 'firstImageContainer' : ''}
+          to={linkTo}
+          style={{ marginTop: '100px' }}
         >
-        <img src={imageSource} className={`${imageClassName}`} alt="icon" />
+          <img src={imageSource} className={`${imageClassName}`} alt="icon" />
         </NavLink>
         <div className='colorWheel' onMouseEnter={() => setShowColorWheelDropdown(true)} onMouseLeave={() => setShowColorWheelDropdown(false)}>
-            <img src={CWheel} className={`${imageClassName}`} alt="color wheel" />
-            {showColorWheelDropdown && <ColorWheelDropdown onColorChange={handleColorChange} />}
+          <img src={CWheel} className={`${imageClassName}`} alt="color wheel" />
+          {showColorWheelDropdown && <ColorWheelDropdown onColorChange={handleColorChange} />}
         </div>
-        
+      </div>
     </div>
   );
 }

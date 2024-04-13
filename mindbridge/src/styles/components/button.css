@@ -1,24 +1,4 @@
-.button {
-  border: 0;
-  border-radius: 0.8rem;
 
-  font-family: var(--font-primary);
-  font-weight: 600;
-  color: var(--white);
-
-  cursor: pointer;
-  user-select: none;
-
-  transition: background 0.3s ease-out, color 0.3s ease-out;
-
-  /* responsive */
-
-  min-width: 10rem;
-  padding: 1.6rem 1.6rem;
-
-  font-size: 1.6rem;
-  line-height: 2.4rem;
-}
 
 .button--compact {
   /* responsive */

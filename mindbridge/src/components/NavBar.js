@@ -31,7 +31,7 @@ export default function NavBar({ color }) {
       <div className="dropdown">
         <div className="min-h-full">
           <NavLink className="justify-end min-h-full m-0" to={"/profile"}>
-            <img src={profile} className="image" alt="Profile" />
+            <img src={profile} className="image" style={{zIndex: 100}} alt="Profile" />
           </NavLink>
           <div className="dropdown-content -mt-1">
             <NavLink to="/profile/settings">Settings</NavLink>
