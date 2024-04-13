@@ -18,7 +18,7 @@ export const Auth0ProviderWithNavigate = ({ children }) => {
         const domain = data.AUTH0_DOMAIN;
         const clientId = data.AUTH0_CLIENT_ID;
         const audience = data.AUTH0_AUDIENCE;
-        const redirectUri = data.REDIRECT_URL;
+        const redirectUri = `${window.location.href}callback`;
 
         console.log("Auth0 configuration loaded:", { domain, clientId, audience, redirectUri })
 

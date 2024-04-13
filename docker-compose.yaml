@@ -5,8 +5,6 @@ services:
     build: ./backend
     volumes:
       - ./backend:/app
-    environment:
-      - REDIRECT_URL=http://localhost/callback
     env_file:
       - ./backend/.env
     networks:
