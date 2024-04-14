@@ -9,7 +9,6 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
     - name: Copy repository to DigitalOcean
       uses: appleboy/scp-action@master
       with:
@@ -19,14 +18,6 @@ jobs:
         port: 22
         source: "."
         target: "/root/MindBridge"
-
-    - name: SSH Remote Commands
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.DIGITALOCEAN_IP }}
-        username: root
-        key: ${{ secrets.DIGITALOCEAN_SSH_KEY }}
-        port: 22
         script: |
           cd /root/MindBridge
           docker-compose down
