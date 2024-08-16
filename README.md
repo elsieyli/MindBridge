@@ -1,3 +1,6 @@
+#View MindBridge
+You can access the MindBridge website via https://mindbridge.study, simply login with your email and enjoy the project!
+
 # MindBridge
 
 MindBridge is an innovative communication aid designed for non-verbal autistic children, empowering them to express their needs and emotions. Our application utilizes intuitive design, advanced machine learning for text-to-speech capabilities, and real-time messaging to create a supportive environment for children, caregivers, and parents.
