@@ -1,4 +1,4 @@
-#View MindBridge
+# View MindBridge
 You can access the MindBridge website via https://mindbridge.study, simply login with your email and enjoy the project!
 
 # MindBridge
